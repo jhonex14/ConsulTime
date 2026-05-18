@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConsulTime - Faculty Consultation Scheduler</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary-custom fixed-top shadow-sm transition-all" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
+                <div class="logo-icon me-2 shadow-sm d-flex justify-content-center align-items-center">
+                    <i class="fa-solid fa-clock text-primary"></i>
+                </div>
+                <span>ConsulTime<br><small class="fs-7 fw-normal d-block text-white-50" style="line-height:0.8;">Academic Scheduler</small></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto fw-medium">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#how-it-works">How It Works</a></li>
+                </ul>
+                <div class="ms-lg-3 mt-3 mt-lg-0" id="userMenu">
+                    <a href="login.html" class="btn btn-outline-light me-2 rounded-pill px-4">Login</a>
+                    <a href="register.html" class="btn btn-accent rounded-pill px-4 fw-bold shadow-sm">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section d-flex align-items-center relative overflow-hidden">
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+        </div>
+        <div class="container hero-content pt-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0 z-index-1">
+                    <span class="badge bg-accent-soft text-accent mb-3 px-3 py-2 rounded-pill fw-bold border border-accent">New: Cloud-Integrated</span>
+                    <h1 class="display-4 fw-800 text-white mb-4 lh-sm">Smart Faculty<br><span class="text-accent">Consultation</span> Scheduler</h1>
+                    <p class="lead text-white-75 mb-5 fw-light">Bridge the gap between students and faculty. Easily book appointments, manage academic schedules, and track consultations in one unified platform.</p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="register.html" class="btn btn-accent btn-lg fw-bold shadow-lg px-4 rounded-pill d-flex align-items-center gap-2">
+                            Book Now <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#features" class="btn btn-outline-light btn-lg shadow-sm px-4 rounded-pill">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 z-index-1">
+                    <div class="glass-card p-4 rounded-4 shadow-lg position-relative hero-illustration animate-float">
+                        <div class="d-flex justify-content-between align-items-center mb-4 border-bottom border-light pb-3">
+                            <h5 class="text-white mb-0 fw-bold"><i class="fa-regular fa-calendar-check me-2 text-accent"></i>Upcoming Consultations</h5>
+                            <span class="badge bg-success rounded-pill px-3 py-2">Live Sync</span>
+                        </div>
+                        
+                        <div class="d-flex flex-column gap-3">
+                            <div class="bg-white bg-opacity-10 p-3 rounded-3 d-flex align-items-center border border-white border-opacity-25 hover-lift transition-all">
+                                <div class="bg-accent text-dark rounded-circle d-flex align-items-center justify-content-center me-3 shadow-sm" style="width: 48px; height: 48px;">
+                                    <i class="fa-solid fa-user-tie fs-5"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="text-white mb-1 fw-bold">Prof. Alan Turing</h6>
+                                    <small class="text-white-50"><i class="fa-solid fa-clock me-1"></i> Today, 2:00 PM - CS101 Help</small>
+                                </div>
+                                <span class="badge bg-success">Approved</span>
+                            </div>
+
+                            <div class="bg-white bg-opacity-10 p-3 rounded-3 d-flex align-items-center border border-white border-opacity-25 hover-lift transition-all">
+                                <div class="bg-light text-primary rounded-circle d-flex align-items-center justify-content-center me-3 shadow-sm" style="width: 48px; height: 48px;">
+                                    <i class="fa-solid fa-flask fs-5"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="text-white mb-1 fw-bold">Dr. Marie Curie</h6>
+                                    <small class="text-white-50"><i class="fa-solid fa-clock me-1"></i> Tomorrow, 10:00 AM - Thesis</small>
+                                </div>
+                                <span class="badge bg-warning text-dark">Pending</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-6 bg-light">
+        <div class="container py-5">
+            <div class="text-center mb-5 max-w-700 mx-auto">
+                <span class="text-primary fw-bold text-uppercase tracking-wide">Why Choose ConsulTime</span>
+                <h2 class="display-6 fw-bold mt-2 mb-3">Designed for Academic Excellence</h2>
+                <p class="text-muted lead">Everything you need to manage faculty-student interactions efficiently.</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 feature-card hover-lift transition-all p-3">
+                        <div class="card-body text-center">
+                            <div class="feature-icon bg-primary-soft text-primary mb-4 mx-auto rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width: 80px; height: 80px;">
+                                <i class="fa-solid fa-calendar-alt fs-2"></i>
+                            </div>
+                            <h4 class="fw-bold mb-3">Smart Scheduling</h4>
+                            <p class="text-muted">Real-time availability sync prevents double-booking. Faculty can set their specific consultation hours easily.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 feature-card hover-lift transition-all p-3">
+                        <div class="card-body text-center">
+                            <div class="feature-icon bg-accent-soft text-accent mb-4 mx-auto rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width: 80px; height: 80px;">
+                                <i class="fa-solid fa-bell fs-2"></i>
+                            </div>
+                            <h4 class="fw-bold mb-3">Instant Updates</h4>
+                            <p class="text-muted">Get immediate status updates when an appointment is approved, rejected, or completed.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 feature-card hover-lift transition-all p-3">
+                        <div class="card-body text-center">
+                            <div class="feature-icon bg-success-soft text-success mb-4 mx-auto rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width: 80px; height: 80px;">
+                                <i class="fa-solid fa-chart-line fs-2"></i>
+                            </div>
+                            <h4 class="fw-bold mb-3">Cloud Integrated</h4>
+                            <p class="text-muted">Powered by modern cloud infrastructure ensuring your data is always accessible, secure, and blazing fast.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row gy-4 align-items-center border-bottom border-secondary pb-4 mb-4">
+                <div class="col-md-6 text-center text-md-start">
+                    <a class="navbar-brand fw-bold d-inline-flex align-items-center text-white text-decoration-none" href="index.html">
+                        <i class="fa-solid fa-clock text-accent me-2 fs-4"></i>
+                        <span class="fs-4">ConsulTime</span>
+                    </a>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="social-links d-flex justify-content-center justify-content-md-end gap-3">
+                        <a href="#" class="btn btn-outline-secondary rounded-circle"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="btn btn-outline-secondary rounded-circle"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="btn btn-outline-secondary rounded-circle"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="text-white-50 mb-0 small">&copy; 2026 ConsulTime Capstone Project. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="text-white-50 mb-0 small">Designed with <i class="fa-solid fa-heart text-danger mx-1"></i> for Academic Institutions</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

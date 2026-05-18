@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ConsulTime</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-light">
+
+    <div class="container d-flex align-items-center justify-content-center min-vh-100 py-5">
+        <div class="card shadow-lg border-0 rounded-4 overflow-hidden" style="max-width: 900px; width: 100%;">
+            <div class="row g-0">
+                <!-- Branding Section -->
+                <div class="col-md-5 bg-primary-custom text-white p-5 d-flex flex-column justify-content-center position-relative">
+                    <div class="hero-bg-shapes opacity-50">
+                        <div class="shape shape-1" style="width: 200px; height: 200px;"></div>
+                    </div>
+                    <div class="z-index-1">
+                        <a href="index.html" class="text-white text-decoration-none d-flex align-items-center mb-4">
+                            <i class="fa-solid fa-clock text-accent fs-2 me-2"></i>
+                            <h3 class="fw-bold mb-0">ConsulTime</h3>
+                        </a>
+                        <h2 class="fw-bold mb-3">Welcome Back!</h2>
+                        <p class="text-white-75 mb-4">Log in to manage your academic consultations, schedules, and appointments.</p>
+                        <div class="mt-auto">
+                            <p class="small text-white-50">Don't have an account?</p>
+                            <a href="register.html" class="btn btn-outline-light rounded-pill px-4">Create Account</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Login Form Section -->
+                <div class="col-md-7 p-5 bg-white">
+                    <div class="text-center mb-4">
+                        <h3 class="fw-bold text-dark">Sign In</h3>
+                        <p class="text-muted">Enter your credentials to access your dashboard</p>
+                    </div>
+
+                    <div id="loginAlert" class="alert alert-danger d-none" role="alert"></div>
+
+                    <form id="loginForm">
+                        <div class="mb-4">
+                            <label for="email" class="form-label fw-medium text-dark">Email Address</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i class="fa-regular fa-envelope text-muted"></i></span>
+                                <input type="email" class="form-control border-start-0 ps-0 bg-light" id="email" required placeholder="juan.delacruz@university.edu">
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="password" class="form-label fw-medium text-dark">Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i class="fa-solid fa-lock text-muted"></i></span>
+                                <input type="password" class="form-control border-start-0 ps-0 bg-light" id="password" required placeholder="••••••••">
+                                <button class="btn btn-light border" type="button" id="togglePassword">
+                                    <i class="fa-regular fa-eye text-muted"></i>
+                                </button>
+                            </div>
+                            <div class="text-end mt-2">
+                                <a href="#" class="text-primary text-decoration-none small">Forgot Password?</a>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 py-2 rounded-pill fw-bold mb-3 d-flex justify-content-center align-items-center gap-2" id="loginBtn">
+                            Sign In <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const pwd = document.getElementById('password');
+            const icon = this.querySelector('i');
+            if (pwd.type === 'password') {
+                pwd.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                pwd.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+    </script>
+</body>
+</html>

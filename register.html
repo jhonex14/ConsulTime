@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - ConsulTime</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-light">
+
+    <div class="container d-flex align-items-center justify-content-center min-vh-100 py-5">
+        <div class="card shadow-lg border-0 rounded-4 overflow-hidden" style="max-width: 900px; width: 100%;">
+            <div class="row g-0">
+                <!-- Branding Section -->
+                <div class="col-md-4 bg-primary-custom text-white p-5 d-flex flex-column justify-content-center position-relative d-none d-md-flex">
+                    <div class="hero-bg-shapes opacity-50">
+                        <div class="shape shape-2" style="width: 200px; height: 200px;"></div>
+                    </div>
+                    <div class="z-index-1">
+                        <a href="index.html" class="text-white text-decoration-none d-flex align-items-center mb-4">
+                            <i class="fa-solid fa-clock text-accent fs-2 me-2"></i>
+                            <h3 class="fw-bold mb-0">ConsulTime</h3>
+                        </a>
+                        <h2 class="fw-bold mb-3">Join Us!</h2>
+                        <p class="text-white-75 mb-4">Create an account to start booking consultations or managing your academic schedule.</p>
+                        <div class="mt-auto">
+                            <p class="small text-white-50">Already have an account?</p>
+                            <a href="login.html" class="btn btn-outline-light rounded-pill px-4">Sign In here</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Registration Form Section -->
+                <div class="col-md-8 p-5 bg-white">
+                    <div class="text-center mb-4">
+                        <h3 class="fw-bold text-dark">Create an Account</h3>
+                        <p class="text-muted">Register as a Student or Faculty member</p>
+                    </div>
+
+                    <div id="registerAlert" class="alert alert-danger d-none" role="alert"></div>
+
+                    <form id="registerForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="fullName" class="form-label fw-medium text-dark">Full Name</label>
+                                <input type="text" class="form-control bg-light" id="fullName" required placeholder="Juan Dela Cruz">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="role" class="form-label fw-medium text-dark">Account Type</label>
+                                <select class="form-select bg-light" id="role" required>
+                                    <option value="" disabled selected>Select Role</option>
+                                    <option value="student">Student</option>
+                                    <option value="faculty">Faculty Member</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="idNumber" class="form-label fw-medium text-dark">ID Number</label>
+                                <input type="text" class="form-control bg-light" id="idNumber" required placeholder="e.g. 2026-0001">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="department" class="form-label fw-medium text-dark">Course / Department</label>
+                                <input type="text" class="form-control bg-light" id="department" required placeholder="e.g. BSCS or ICT Dept">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-9 mb-3">
+                                <label for="address" class="form-label fw-medium text-dark">Full Address</label>
+                                <input type="text" class="form-control bg-light" id="address" required placeholder="123 Street, City">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="age" class="form-label fw-medium text-dark">Age</label>
+                                <input type="number" class="form-control bg-light" id="age" required min="15" placeholder="18">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="regEmail" class="form-label fw-medium text-dark">University Email Address</label>
+                            <input type="email" class="form-control bg-light" id="regEmail" required placeholder="juan@university.edu">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label for="regPassword" class="form-label fw-medium text-dark">Password</label>
+                                <input type="password" class="form-control bg-light" id="regPassword" required placeholder="••••••••" minlength="6">
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label for="confirmPassword" class="form-label fw-medium text-dark">Confirm Password</label>
+                                <input type="password" class="form-control bg-light" id="confirmPassword" required placeholder="••••••••" minlength="6">
+                            </div>
+                        </div>
+
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" value="" id="termsCheck" required>
+                            <label class="form-check-label small text-muted" for="termsCheck">
+                                I agree to the <a href="#" class="text-primary">Terms of Service</a> and <a href="#" class="text-primary">Privacy Policy</a>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-accent w-100 py-2 rounded-pill fw-bold mb-3 d-flex justify-content-center align-items-center gap-2" id="registerBtn">
+                            Register Account <i class="fa-solid fa-user-plus"></i>
+                        </button>
+                        
+                        <div class="text-center d-md-none mt-3">
+                            <p class="small text-muted mb-1">Already have an account?</p>
+                            <a href="login.html" class="text-primary fw-medium">Sign In here</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
